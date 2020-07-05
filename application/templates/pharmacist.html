@@ -1,0 +1,130 @@
+{% extends 'layout.html' %}
+
+{% block title %}Pharmacist{% endblock %}
+
+{% block content %}
+<h3>{{msg}}</h3>
+<form class="example" action="{{ url_for('search2') }}" method="POST">
+    <input type="text" placeholder="Search.." name="search2">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+
+{% if patient %}
+
+<p>Pharmacy!</p>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Patient ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Address</th>
+        <th scope="col">DOJ</th>
+        <th scope="col">Type of Room</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in patient %}
+        <tr>
+                <td scope='row'>{{ data['patientID'] }}</td>
+                <td>{{ data['name'] }}</td>
+                <td>{{ data['age'] }}</td>
+                <td>{{ data['address'] }}</td>
+                <td>{{ data['admitdate'] }}</td>
+                <td>{{ data['bedtype'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+{% endif %}
+{% if test %}
+<p>Medicine Issued</p>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Medicine</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Rate</th>
+        <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in test %}
+        <tr>
+                <td scope='row'>{{ data['name'] }}</td>
+                <td>{{ data['quantity'] }}</td>
+                <td>{{ data['rate'] }}</td>
+                <td>{{ data['quantity'] * data['rate']}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+{% if patient %}
+<form action="{{ url_for('search2') }}" method="POST">
+        <select name="medicineissue" size="3" class="mdb-select md-form" searchable="Search here.." required>  
+                <option value="" disabled selected>Add Test to Above Patient</option>
+                {% for data in test2 %}
+                <option value="{{data['medicinename']}}"> {{data['medicinename']}} </option>  
+                {% endfor %}
+        </select>
+        <label for="issuequatity">
+            Quantity
+        </label>
+        <input type="text" name="issuequatity" required>
+        <input type="submit" value="Issue Medicine">
+</form>
+{% endif %}
+
+{% if test1 %}
+<p>Medicine Availabel</p>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Medicine</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Rate</th>
+        <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+            {% for data in test1 %}
+            <tr>
+                    <td scope='row'>{{ data['medicinename'] }}</td>
+                    <td>{{ data['quantity'] }}</td>
+                    <td>{{ data['rate'] }}</td>
+                    <td>{{ data['quantity'] * data['rate'] }}</td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+
+{% endif %}
+
+
+<form action="{{ url_for('pharmacist') }}" method="POST">
+<label for="medicine">
+    Medicine
+</label>
+<input type="text" name="medicine" placeholder="Medicine" required >
+<label for="quantity">
+    Quantity
+</label>
+<input type="text" name="quantity" placeholder="Quantity"  required>
+<label for="rate">
+    Rate
+</label>
+<input type="text" name="rate" placeholder="Rate"  required>
+<input type="submit" value="Add Medicine">
+</form>
+<br><br>
+<button>Update</button>
+
+
+{% endblock %}
+
+
+

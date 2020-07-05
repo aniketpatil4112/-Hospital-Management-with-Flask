@@ -1,0 +1,88 @@
+{% extends 'layout.html' %}
+{% block content %}
+<br>
+<form class="example" action="{{ url_for('bill') }}" method="POST">
+    <input type="text" placeholder="Search.." name="search3">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+{% if patient %}
+<p>Patient Details</p>
+  {% if patient %}
+    <table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Patient ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Address</th>
+        <th scope="col">DOJ</th>
+        <th scope="col">Type of Room</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in patient %}
+        <tr>
+                <td scope='row'>{{ data['patientID'] }}</td>
+                <td>{{ data['name'] }}</td>
+                <td>{{ data['age'] }}</td>
+                <td>{{ data['address'] }}</td>
+                <td>{{ data['admitdate'] }}</td>
+                <td>{{ data['bedtype'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+  {% endif %}
+  {% if test %}
+<p>Medicine Issued</p>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Medicine</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Rate</th>
+        <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+
+        {% for data in test %}
+        <tr>
+                <td scope='row'>{{ data['name'] }}</td>
+                <td>{{ data['quantity'] }}</td>
+                <td>{{ data['rate'] }}</td>
+                <td>{{ data['quantity'] * data['rate']}}</td>
+                
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+<h1>Medicine Total = {{medicine}}</h1>
+{% endif %}
+{% if test1 %}
+<p>Diagnostics Conducted</p>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Name of the Test</th>
+        <th scope="col">Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for data in test1 %}
+        <tr>
+                <td scope='row'>{{ data['name'] }}</td>
+                <td>{{ data['charge'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h1>Diagnostics Total = {{diagnostics}}</h1>
+{% endif %}
+<h1>Room Bill Total = {{roombill}}</h1>
+<br>
+<h1>Grand Total = {{total}}</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<h1>View Patient</h1>
+
+<table class="table table-hover" border="1">
+<thead>
+<th scope="col">Patient Id</td>
+<th scope="col">Name</td>
+<th scope="col">Age</td>
+<th scope="col">DOJ</td>
+<th scope="col">Address</td>
+<th scope="col">Bed Type</td>
+</thead>
+<tbody>
+{% for row in record %}
+<tr>
+<td>{{row[0]}}</td>
+<td>{{row[1]}}</td>
+<td>{{row[2]}}</td>
+<td>{{row[3]}}</td>
+<td>{{row[4]}}</td>
+<td>{{row[5]}}</td>
+</tr>
+{% endfor %}
+</tbody>
+
+
+</table>
+
+{% endblock %}

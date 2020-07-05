@@ -1,0 +1,12 @@
+
+
+{%block content%}
+<h1>Enter SSN</h1>
+<form name="get_ssn" action="" method="POST">
+    {{ form.hidden_tag() }}
+    {{form.pat_ssn_id.label}}
+    {{form.pat_ssn_id(size=20)}}
+    {{form.get}}
+</form>
+
+{%endblock%}

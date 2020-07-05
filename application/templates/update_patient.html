@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Update</h1>
+<form name="get_ssn" action="" method="POST">
+    {{id_form.hidden_tag()}}
+    {{id_form.pat_id.label}}
+    {{id_form.pat_id(size=10,value=p_id)}}
+
+    {{id_form.get}}
+</form>
+
+<form name="patient" action="" method="POST">
+    {{ form.hidden_tag() }}
+
+    {% if get %}    
+    <p>
+        {{form.pat_name.label}}
+        {{form.pat_name(size=20,value=row[2])}}
+    </p>
+        <p>
+        {{form.pat_age.label}}
+        {{form.pat_age(size=20,value=row[3])}}
+    </p>
+        
+    <p>
+        {{form.date_of_amdn.label}}
+        {{form.date_of_amdn(size=20,value=row[4])}}
+    </p>
+    <p>
+        {{form.bed_type.label}}
+        {{form.bed_type(value=row[5])}}
+    </p>
+    <p>
+        {{form.address.label}}
+        {{form.address(size=20,value=row[6])}}
+    </p>
+    <p>
+        {{form.state.label}}
+        {{form.state(value=row[7])}}
+    
+    </p>
+    
+    <p>
+        {{form.city.label}}
+        {{form.city(value=row[8])}}
+    
+    </p>
+    
+    <p>
+    {% if msg!="" %}
+    <label>{{msg}}</label>
+</p>
+    {% endif %}
+    {{form.submit}}
+    {% endif %}
+
+</form>
+
+
+{% endblock %}

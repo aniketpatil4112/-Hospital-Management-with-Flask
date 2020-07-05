@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	</head>
+	<body class="loggedin">
+		<div class="container-fluid text-center top-container">
+    <img src="{{ url_for('static', filename='images/hospital1.jpg')}}" width=1000 height=100>
+</div>
+    <nav class="navtop">
+			<!-- <div>
+                <a href="{{ url_for('home') }}">Home</a>
+                <div class="dropdown">
+                    <button class="dropbtn"> Patient
+                      
+                    </button>
+                    <div class="dropdown-content">
+                      <a href="#">create Patient</a>
+                      <a href="#">Update Patient</a>
+                      <a href="#">Delete Patient</a>
+                      <a href="#">View Patients</a>
+                      <a href="#">Search Patient</a>
+                      <a href="#">Generate Bill</a>
+                    </div>
+                  </div>
+				<a href="{{ url_for('logout') }}"></i>Logout</a>
+            </div> -->
+            <div class="drop">
+                    <ul class="drop_menu">
+                    <li><a href="{{ url_for('home') }}"><i class="fas fa-home"></i>Home</a></li>
+                    
+                    <li><a href='#'>Patient</a>
+                        <ul>
+                        <li><a href="{{ url_for('create_patient') }}">create Patient</a></li>
+                        <li><a href="{{ url_for('update_patient') }}">Update Patient</a></li>
+                       
+                        <li><a href="{{ url_for('search_patient') }}">Search Patients</a></li>
+                         <li><a href="{{ url_for('view_pat') }}">View Patients</a></li>
+                         <li><a href="{{ url_for('delete_pat') }}">Delete Patients</a></li>
+                         <li><a href="{{ url_for('bill') }}">Generate Bill</a></li>
+                        </ul>
+                    </li>
+                    <li><a href='#'>Pharmacy</a>
+                        <ul>
+                        <li><a href="{{ url_for('pharmacist') }}">Get Patient Details</a></li> 
+                        </ul>
+                    </li>
+                    <li><a href='#'>Diagnostics</a>
+                        <ul>
+                        <li><a href="{{ url_for('diagnostics') }}">Get Patient Details</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                    </ul>
+                    </div>
+		</nav>
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
+	</body>
+</html>

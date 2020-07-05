@@ -1,0 +1,62 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<h1>Search</h1>
+<form name="get_ssn" action="" method="POST">
+    {{id_form.pat_id.label}}
+    {{id_form.pat_id(size=20)}}
+    {{id_form.get}}
+
+</form>
+
+<form name="search_patient" action="" method="POST">
+    
+
+    {{ form.hidden_tag() }}
+    {% if get %}
+
+   
+    {% for row in record %}
+    <p>
+        {{form.pat_name.label}}
+        {{form.pat_name(size=20,value=row[2],readonly=true)}}
+    </p>
+        <p>
+        {{form.pat_age.label}}
+        {{form.pat_age(size=20,value=row[3],readonly=true)}}
+    </p>
+        
+    <p>
+        {{form.date_of_amdn.label}}
+        {{form.date_of_amdn(size=20,value=row[4],readonly=true)}}
+    </p>
+    <p>
+        {{form.bed_type.label}}
+        {{form.bed_type(value=row[5],readonly=true)}}
+    </p>
+    <p>
+        {{form.address.label}}
+        {{form.address(size=20,value=row[6],readonly=true)}}
+    </p>
+    <p>
+        {{form.state.label}}
+        {{form.state(value=row[7],readonly=true)}}
+    
+    </p>
+    
+    <p>
+        {{form.city.label}}
+        {{form.city(value=row[8],readonly=true)}}
+    
+    </p>
+    {% endfor %}
+    {% endif %}
+
+    {% if msg!="" %}
+    <label>{{msg}}</label>
+    {% endif %}
+</form>
+
+
+{% endblock%}

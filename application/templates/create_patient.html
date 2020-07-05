@@ -1,0 +1,63 @@
+
+{% extends "layout.html" %}
+<br><br>
+{% block content %}
+<form name='create_patient' action="" method="POST" >
+{{ form.hidden_tag() }}
+<p>
+ 
+    {{form.pat_ssn_id.label}}
+    {{form.pat_ssn_id(size=20)}}
+</p>
+
+<p>
+    {{form.pat_name.label}}
+    {{form.pat_name(size=20)}}
+</p>
+    <p>
+    {{form.pat_age.label}}
+    {{form.pat_age}}
+</p>
+    
+<p>
+    {{form.date_of_amdn.label}}
+    {{form.date_of_amdn(size=20)}}
+</p>
+<p>
+    {{form.bed_type.label}}
+    {{form.bed_type}}
+</p>
+<p>
+    {{form.address.label}}
+    {{form.address(size=20)}}
+</p>
+<p>
+    {{form.state.label}}
+    {{form.state}}
+
+</p>
+
+<p>
+    {{form.city.label}}
+    {{form.city}}
+
+</p>
+
+{% if msg!="" %}
+<p>
+    <label>{{msg}}</label>
+
+
+</p>
+{% endif %}
+
+{{form.submit}}
+
+{{form.reset}}
+
+
+</form>
+
+
+
+{% endblock %}
